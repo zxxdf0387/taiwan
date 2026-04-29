@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f2efe7">
+  <meta name="description" content="台股盤前分析手機端程式，快速查看觀察清單、盤前訊號與風險提醒。">
+  <title>晨盤雷達</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon.svg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="hero__eyebrow">Taiwan Market Premarket</div>
+      <div class="hero__title-row">
+        <div>
+          <h1>晨盤雷達</h1>
+          <p class="hero__subtitle">整合黃清照 YouTube 頻道 /videos 頁面最新 3 支發布影片，交叉比對後再整理盤前觀察股。</p>
+          <div id="activeTabLabel" class="hero__tab-label">目前分頁：總覽</div>
+          <div id="syncStatus" class="hero__sync-status">目前交叉比對的最近 3 支影片日期：2026/04/29、2026/04/28、2026/04/27。</div>
+        </div>
+        <button id="refreshButton" class="icon-button" type="button" aria-label="同步最新收盤價">
+          <span>同步</span>
+        </button>
+      </div>
+
+      <section class="scoreboard">
+        <article class="score-card score-card--accent">
+          <div class="score-card__label">今日情緒</div>
+          <div id="marketMood" class="score-card__value">偏多</div>
+          <div id="marketSummary" class="score-card__meta">加權期夜盤續強，電子權值撐盤</div>
+        </article>
+        <article class="score-card">
+          <div class="score-card__label">盤前分數</div>
+          <div id="premarketScore" class="score-card__value">78</div>
+          <div class="score-card__meta">0-100 綜合評分</div>
+        </article>
+        <article class="score-card">
+          <div class="score-card__label">開盤策略</div>
+          <div id="openingPlan" class="score-card__value score-card__value--small">先看量價確認</div>
+          <div class="score-card__meta">避免追高</div>
+        </article>
+      </section>
+    </header>
+
+    <main class="content">
+      <section class="panel view-panel" data-view="overview">
+        <div class="panel__header">
+          <div>
+            <div class="panel__eyebrow">影片整理</div>
+            <h2>黃清照近期重點</h2>
+          </div>
+          <div id="todayLabel" class="panel__date"></div>
+        </div>
+        <div id="headlineList" class="headline-list"></div>
+      </section>
+
+      <section class="panel view-panel" data-view="overview">
+        <div class="panel__header">
+          <div>
+            <div class="panel__eyebrow">Bollinger Bands</div>
+            <h2>布林軌道今日首選</h2>
+          </div>
+        </div>
+        <div id="topPickCard" class="top-pick"></div>
+        <div id="bollingerPreview" class="bollinger-preview"></div>
+      </section>
+
+      <section class="panel view-panel" data-view="list">
+        <div class="panel__header">
+          <div>
+            <div class="panel__eyebrow">Analyst Picks</div>
+            <h2>主要欄目股票</h2>
+          </div>
+          <label class="search">
+            <span class="visually-hidden">搜尋個股</span>
+            <input id="searchInput" type="search" placeholder="搜尋代號或名稱">
+          </label>
+        </div>
+        <div id="stockList" class="stock-list"></div>
+      </section>
+
+      <section class="panel view-panel" data-view="list">
+        <div class="panel__header">
+          <div>
+            <div class="panel__eyebrow">Bollinger View</div>
+            <h2>周線 / 月線布林軌道判讀</h2>
+          </div>
+        </div>
+        <div id="bollingerList" class="bollinger-list"></div>
+      </section>
+
+      <section class="panel panel--split view-panel" data-view="alerts">
+        <article class="subpanel">
+          <div class="panel__header">
+            <div>
+              <div class="panel__eyebrow">Checklist</div>
+              <h2>盤前檢查表</h2>
+            </div>
+          </div>
+          <div id="checklist" class="checklist"></div>
+        </article>
+        <article class="subpanel">
+          <div class="panel__header">
+            <div>
+              <div class="panel__eyebrow">Risk Radar</div>
+              <h2>風險提醒</h2>
+            </div>
+          </div>
+          <div id="riskList" class="risk-list"></div>
+        </article>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="主要功能">
+      <button class="bottom-nav__item bottom-nav__item--active" type="button" data-tab="overview" onclick="switchTab('overview')">總覽</button>
+      <button class="bottom-nav__item" type="button" data-tab="list" onclick="switchTab('list')">清單</button>
+      <button class="bottom-nav__item" type="button" data-tab="alerts" onclick="switchTab('alerts')">提醒</button>
+    </nav>
+  </div>
+
+  <template id="headlineTemplate">
+    <article class="headline">
+      <div class="headline__badge"></div>
+      <div class="headline__body">
+        <h3></h3>
+        <p></p>
+      </div>
+    </article>
+  </template>
+
+  <template id="stockTemplate">
+    <article class="stock-card">
+      <div class="stock-card__top">
+        <div>
+          <div class="stock-card__code"></div>
+          <h3 class="stock-card__name"></h3>
+        </div>
+        <div class="pill"></div>
+      </div>
+      <div class="stock-card__metrics"></div>
+      <div class="stock-card__note"></div>
+      <div class="stock-card__signals"></div>
+    </article>
+  </template>
+
+  <template id="checklistTemplate">
+    <label class="checklist-item">
+      <input type="checkbox">
+      <span></span>
+    </label>
+  </template>
+
+  <template id="riskTemplate">
+    <article class="risk-item">
+      <div class="risk-item__level"></div>
+      <div>
+        <h3></h3>
+        <p></p>
+      </div>
+    </article>
+  </template>
+
+  <template id="bollingerTemplate">
+    <article class="bollinger-card">
+      <div class="stock-card__top">
+        <div>
+          <div class="stock-card__code"></div>
+          <h3 class="stock-card__name"></h3>
+        </div>
+        <div class="pill"></div>
+      </div>
+      <div class="bollinger-card__meta"></div>
+      <div class="stock-card__note"></div>
+      <div class="stock-card__signals"></div>
+    </article>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>
