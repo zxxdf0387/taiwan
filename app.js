@@ -1,5 +1,10 @@
 const appState = {
   liveQuotes: {},
+  updateMeta: {
+    version: "2026.05.05.1",
+    lastUpdated: "2026/05/05 22:20",
+    videoBasis: "2026/05/04、2026/04/30、2026/04/29",
+  },
   marketMood: {
     label: "影片偏多",
     summary: "5 月 4、4 月 30、4 月 29 三支影片交叉後，3 日共通股重新出現，焦點集中在鴻海、立隆電、矽格、艾訊、萬泰科，以及台燿、國巨、奇鋐、勤誠、廣達這批延續輪漲股。",
@@ -415,6 +420,7 @@ const elements = {
   openingPlan: document.querySelector("#openingPlan"),
   activeTabLabel: document.querySelector("#activeTabLabel"),
   syncStatus: document.querySelector("#syncStatus"),
+  updateMeta: document.querySelector("#updateMeta"),
   headlineList: document.querySelector("#headlineList"),
   stockList: document.querySelector("#stockList"),
   checklist: document.querySelector("#checklist"),
@@ -479,6 +485,20 @@ function renderHeader() {
   elements.marketSummary.textContent = appState.marketMood.summary;
   elements.premarketScore.textContent = appState.marketMood.score;
   elements.openingPlan.textContent = appState.marketMood.openingPlan;
+  elements.updateMeta.innerHTML = `
+    <div class="hero-meta-card">
+      <div class="hero-meta-card__label">版本時間</div>
+      <div class="hero-meta-card__value">${appState.updateMeta.version}</div>
+    </div>
+    <div class="hero-meta-card">
+      <div class="hero-meta-card__label">最後更新</div>
+      <div class="hero-meta-card__value">${appState.updateMeta.lastUpdated}</div>
+    </div>
+    <div class="hero-meta-card">
+      <div class="hero-meta-card__label">影片基準</div>
+      <div class="hero-meta-card__value">${appState.updateMeta.videoBasis}</div>
+    </div>
+  `;
 }
 
 function renderHeadlines() {

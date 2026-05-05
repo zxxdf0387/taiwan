@@ -92,6 +92,34 @@ body {
   line-height: 1.55;
 }
 
+.hero__meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.hero-meta-card {
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--line);
+}
+
+.hero-meta-card__label {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.hero-meta-card__value {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
 .hero__tab-label {
   margin-top: 10px;
   display: inline-flex;
@@ -491,6 +519,7 @@ body {
 }
 
 @media (max-width: 420px) {
+  .hero__meta-grid,
   .scoreboard,
   .metric-grid,
   .stock-card__signals {
