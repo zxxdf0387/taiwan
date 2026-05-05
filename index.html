@@ -20,7 +20,7 @@
           <h1>晨盤雷達</h1>
           <p class="hero__subtitle">整合黃清照 YouTube 頻道 /videos 頁面最新 3 支發布影片，交叉比對後再整理盤前觀察股。</p>
           <div id="activeTabLabel" class="hero__tab-label">目前分頁：總覽</div>
-          <div id="syncStatus" class="hero__sync-status">目前交叉比對的最近 3 支影片日期：2026/04/29、2026/04/28、2026/04/27。</div>
+        <div id="syncStatus" class="hero__sync-status">目前交叉比對的最近 3 支影片日期：2026/04/30、2026/04/29、2026/04/28。</div>
         </div>
         <button id="refreshButton" class="icon-button" type="button" aria-label="同步最新收盤價">
           <span>同步</span>
@@ -67,6 +67,26 @@
         </div>
         <div id="topPickCard" class="top-pick"></div>
         <div id="bollingerPreview" class="bollinger-preview"></div>
+      </section>
+
+      <section class="panel view-panel" data-view="overview">
+        <div class="panel__header">
+          <div>
+            <div class="panel__eyebrow">Markov Regime</div>
+            <h2>馬可夫盤勢燈號</h2>
+          </div>
+        </div>
+        <div id="markovCard" class="model-card"></div>
+      </section>
+
+      <section class="panel view-panel" data-view="overview">
+        <div class="panel__header">
+          <div>
+            <div class="panel__eyebrow">Monte Carlo</div>
+            <h2>蒙地卡羅風險卡</h2>
+          </div>
+        </div>
+        <div id="monteCarloList" class="model-list"></div>
       </section>
 
       <section class="panel view-panel" data-view="list">
@@ -174,6 +194,21 @@
         <div class="pill"></div>
       </div>
       <div class="bollinger-card__meta"></div>
+      <div class="stock-card__note"></div>
+      <div class="stock-card__signals"></div>
+    </article>
+  </template>
+
+  <template id="scenarioTemplate">
+    <article class="model-scenario">
+      <div class="stock-card__top">
+        <div>
+          <div class="stock-card__code"></div>
+          <h3 class="stock-card__name"></h3>
+        </div>
+        <div class="pill"></div>
+      </div>
+      <div class="stock-card__metrics"></div>
       <div class="stock-card__note"></div>
       <div class="stock-card__signals"></div>
     </article>

@@ -196,6 +196,7 @@ body {
 .headline-list,
 .stock-list,
 .bollinger-list,
+.model-list,
 .checklist,
 .risk-list,
 .stock-card__metrics,
@@ -245,7 +246,9 @@ body {
 }
 
 .top-pick,
-.bollinger-card {
+.bollinger-card,
+.model-card,
+.model-scenario {
   padding: 16px;
   border-radius: var(--radius-md);
   background: var(--paper-strong);
@@ -259,8 +262,21 @@ body {
     var(--paper-strong);
 }
 
+.model-card {
+  background:
+    linear-gradient(135deg, rgba(239, 155, 40, 0.1), rgba(255, 250, 241, 0.94)),
+    var(--paper-strong);
+  display: grid;
+  gap: 12px;
+}
+
 .top-pick h3 {
   margin: 8px 0 6px;
+  font-size: 1.35rem;
+}
+
+.model-card h3 {
+  margin: 8px 0 0;
   font-size: 1.35rem;
 }
 
@@ -279,6 +295,38 @@ body {
   display: grid;
   gap: 10px;
   margin-top: 12px;
+}
+
+.model-card__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.model-card__score {
+  min-width: 72px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(11, 122, 117, 0.12);
+  color: var(--accent);
+  font-size: 1.35rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.model-card__note {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.model-card__drivers {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  display: grid;
+  gap: 8px;
+  line-height: 1.5;
 }
 
 .bollinger-preview__hint {
