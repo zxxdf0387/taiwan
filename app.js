@@ -406,7 +406,7 @@ function renderHeader() {
       <div class="hero-meta-card__value">${appState.updateMeta.version}</div>
     </div>
     <div class="hero-meta-card">
-      <div class="hero-meta-card__label">排程同步</div>
+      <div class="hero-meta-card__label">排程最後成功同步</div>
       <div class="hero-meta-card__value">${appState.updateMeta.lastAutomationSync}</div>
     </div>
     <div class="hero-meta-card">

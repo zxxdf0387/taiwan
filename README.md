@@ -52,7 +52,7 @@
 
 - `powershell -ExecutionPolicy Bypass -File .\publish-site.ps1 -CommitMessage "Update site"`
 
-這個腳本會自動做 `git add`、`git commit`、`git push`，讓網站版跟本機內容保持一致。
+這個腳本會自動做 `git add`、`git commit`、`git push`，而且推送失敗時會先 `fetch` / `pull --rebase` 再重試，讓網站版更不容易停在舊資料。
 
 ## 下一步可擴充
 
