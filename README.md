@@ -48,6 +48,12 @@
 
 只要把這個專案推到 GitHub 的 `main` 分支，再到 GitHub 專案設定把 `Pages` 的來源設成 `GitHub Actions`，之後每次更新都會自動發佈成外網網址。
 
+如果要手動把最新內容發到網站，現在也可以直接執行：
+
+- `powershell -ExecutionPolicy Bypass -File .\publish-site.ps1 -CommitMessage "Update site"`
+
+這個腳本會自動做 `git add`、`git commit`、`git push`，讓網站版跟本機內容保持一致。
+
 ## 下一步可擴充
 
 - 串接即時台股 API

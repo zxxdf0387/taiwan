@@ -1,8 +1,9 @@
 const appState = {
   liveQuotes: {},
   updateMeta: {
-    version: "2026.05.12.1",
-    lastUpdated: "2026/05/12 22:16",
+    version: "2026.05.13.1",
+    lastUpdated: "2026/05/13 09:00",
+    lastAutomationSync: "2026/05/12 22:37",
     videoBasis: "2026/05/12、2026/05/11、2026/05/08",
   },
   marketMood: {
@@ -405,10 +406,14 @@ function renderHeader() {
       <div class="hero-meta-card__value">${appState.updateMeta.version}</div>
     </div>
     <div class="hero-meta-card">
+      <div class="hero-meta-card__label">排程同步</div>
+      <div class="hero-meta-card__value">${appState.updateMeta.lastAutomationSync}</div>
+    </div>
+    <div class="hero-meta-card">
       <div class="hero-meta-card__label">最後更新</div>
       <div class="hero-meta-card__value">${appState.updateMeta.lastUpdated}</div>
     </div>
-    <div class="hero-meta-card">
+    <div class="hero-meta-card hero-meta-card--wide">
       <div class="hero-meta-card__label">影片基準</div>
       <div class="hero-meta-card__value">${appState.updateMeta.videoBasis}</div>
     </div>
