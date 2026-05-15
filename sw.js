@@ -1,4 +1,4 @@
-const CACHE_NAME = "morning-radar-v2";
+const CACHE_NAME = "morning-radar-v3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -28,6 +28,14 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => response || fetch(event.request)),
+    fetch(event.request)
+      .then((response) => {
+        if (event.request.method === "GET" && response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+        }
+        return response;
+      })
+      .catch(() => caches.match(event.request)),
   );
 });
