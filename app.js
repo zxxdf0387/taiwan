@@ -1,9 +1,9 @@
 const appState = {
   "liveQuotes": {},
   "updateMeta": {
-    "version": "2026.05.20.0152",
-    "lastUpdated": "2026/05/20 01:52",
-    "lastAutomationSync": "2026/05/20 01:52",
+    "version": "2026.05.20.0154",
+    "lastUpdated": "2026/05/20 01:54",
+    "lastAutomationSync": "2026/05/20 01:54",
     "videoBasis": "2026/05/19、2026/05/18、2026/05/15"
   },
   "marketMood": {
@@ -379,10 +379,10 @@ const appState = {
       "code": "2301",
       "name": "光寶",
       "verdict": "模型最平衡",
-      "range": "20 日模擬區間 133 - 205",
-      "stopLoss": "3% 停損命中率 85%",
-      "takeProfit": "8% 停利命中率 61%",
-      "drawdown": "模擬最大回撤中位數 23.8%",
+      "range": "20 日模擬區間 125 - 197",
+      "stopLoss": "3% 停損命中率 86%",
+      "takeProfit": "8% 停利命中率 58%",
+      "drawdown": "模擬最大回撤中位數 24.7%",
       "note": "光寶 是這版布林與重複輪漲交集最漂亮的一檔。",
       "signals": [
         {
@@ -399,10 +399,10 @@ const appState = {
       "code": "3044",
       "name": "健鼎",
       "verdict": "延續機率高",
-      "range": "20 日模擬區間 290 - 453",
-      "stopLoss": "3% 停損命中率 86%",
-      "takeProfit": "8% 停利命中率 61%",
-      "drawdown": "模擬最大回撤中位數 21.7%",
+      "range": "20 日模擬區間 301 - 453",
+      "stopLoss": "3% 停損命中率 82%",
+      "takeProfit": "8% 停利命中率 65%",
+      "drawdown": "模擬最大回撤中位數 21.2%",
       "note": "健鼎 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
@@ -419,10 +419,10 @@ const appState = {
       "code": "8261",
       "name": "富鼎",
       "verdict": "第二梯隊觀察",
-      "range": "20 日模擬區間 70 - 115",
-      "stopLoss": "3% 停損命中率 88%",
-      "takeProfit": "8% 停利命中率 55%",
-      "drawdown": "模擬最大回撤中位數 23.1%",
+      "range": "20 日模擬區間 71 - 111",
+      "stopLoss": "3% 停損命中率 84%",
+      "takeProfit": "8% 停利命中率 58%",
+      "drawdown": "模擬最大回撤中位數 23.9%",
       "note": "富鼎 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
