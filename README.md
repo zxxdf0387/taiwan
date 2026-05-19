@@ -54,6 +54,23 @@
 
 這個腳本會自動做 `git add`、`git commit`、`git push`，而且推送失敗時會先 `fetch` / `pull --rebase` 再重試，讓網站版更不容易停在舊資料。
 
+## 自動更新
+
+這個專案現在也可以走 Windows 工作排程，不再只依賴 Codex 內建排程。
+
+- 安裝排程：`powershell -ExecutionPolicy Bypass -File .\install-scheduled-update.ps1`
+- 手動跑一次完整更新：`powershell -ExecutionPolicy Bypass -File .\run-scheduled-update.ps1`
+- 檢查排程狀態：`powershell -ExecutionPolicy Bypass -File .\check-scheduled-update.ps1`
+
+排程會每天 `09:00` 和 `22:00`：
+
+- 抓萬寶週刊黃清照老師頁面最新 3 支影音
+- 重寫 [app.js](C:/Users/Bigmo_Home/Documents/New%20project%202/app.js) 裡的資料區塊
+- 自動 `git commit` / `git push`
+- 讓 GitHub Pages 網站跟著更新
+
+執行記錄會寫到 [logs/scheduled-update.log](C:/Users/Bigmo_Home/Documents/New%20project%202/logs/scheduled-update.log)。
+
 ## 下一步可擴充
 
 - 串接即時台股 API
