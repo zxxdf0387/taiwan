@@ -1,11 +1,12 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-$taskNames = @("MorningRadarAutoSync-0900", "MorningRadarAutoSync-2200")
-
-$results = foreach ($taskName in $taskNames) {
-  $task = Get-ScheduledTask -TaskName $taskName -ErrorAction Stop
-  $info = Get-ScheduledTaskInfo -TaskName $taskName
+$results = Get-ScheduledTask |
+  Where-Object { $_.TaskName -like "MorningRadarAutoSync-*" } |
+  Sort-Object TaskName |
+  ForEach-Object {
+  $task = $_
+  $info = Get-ScheduledTaskInfo -TaskName $task.TaskName
 
   [pscustomobject]@{
     TaskName = $task.TaskName
@@ -14,6 +15,6 @@ $results = foreach ($taskName in $taskNames) {
     LastTaskResult = $info.LastTaskResult
     NextRunTime = $info.NextRunTime
   }
-}
+  }
 
 $results
