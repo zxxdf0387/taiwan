@@ -1,9 +1,9 @@
 const appState = {
   "liveQuotes": {},
   "updateMeta": {
-    "version": "2026.05.20.0831",
-    "lastUpdated": "2026/05/20 08:30",
-    "lastAutomationSync": "2026/05/20 08:30",
+    "version": "2026.05.20.0843",
+    "lastUpdated": "2026/05/20 08:43",
+    "lastAutomationSync": "2026/05/20 08:43",
     "videoBasis": "2026/05/19、2026/05/18、2026/05/15"
   },
   "marketMood": {
@@ -24,7 +24,45 @@ const appState = {
         "14 檔重複輪漲",
         "4 檔重複高出",
         "2 檔重複當沖"
-      ]
+      ],
+      "marketLinks": {
+        "us": {
+          "label": "美股分析",
+          "summary": "Nasdaq -0.84%、S&P 500 -0.67%、費半 +0.18%。美股科技鏈中性，對 PCB、被動元件、封測 這組主軸仍要看台股自己量能。",
+          "signals": [
+            "Nasdaq -0.84%",
+            "費半 +0.18%",
+            "電子中性"
+          ]
+        },
+        "jp": {
+          "label": "日股分析",
+          "summary": "日經 225 -2.01%、東京威力科創 -3.69%、Advantest +0.36%。日股科技股轉弱，通常代表亞洲電子鏈對 PCB、被動元件、封測 的隔日情緒有沒有延續。",
+          "signals": [
+            "日經 -2.01%",
+            "TEL -3.69%",
+            "日股轉弱"
+          ]
+        },
+        "kr": {
+          "label": "韓股分析",
+          "summary": "KOSPI -6.10%、Samsung -1.36%、SK Hynix -3.09%。韓股電子權值轉弱，若韓股記憶體與權值一起強，台股電子主線通常比較容易延續。",
+          "signals": [
+            "KOSPI -6.10%",
+            "Samsung -1.36%",
+            "Hynix -3.09%"
+          ]
+        },
+        "hidden": {
+          "label": "蓋牌猜測",
+          "summary": "若今天大盤延續 PCB、被動元件、封測 輪動，蓋牌比較像 尼克森、同欣電、技嘉。這幾檔沒有在這支影片直接講出來，但不是同族群補漲，就是在前兩支影片曾被反覆點過。",
+          "signals": [
+            "尼克森：曾在 2026/05/15 列輪漲 / 同屬 被動元件",
+            "同欣電：曾在 2026/05/18 列輪漲 / 同屬 封測",
+            "技嘉：曾在 2026/05/18 列輪漲 / 曾在 2026/05/15 列輪漲"
+          ]
+        }
+      }
     },
     {
       "tone": "neutral",
@@ -37,7 +75,45 @@ const appState = {
         "15 檔重複輪漲",
         "4 檔重複高出",
         "3 檔重複當沖"
-      ]
+      ],
+      "marketLinks": {
+        "us": {
+          "label": "美股分析",
+          "summary": "Nasdaq -0.84%、S&P 500 -0.67%、費半 +0.18%。美股科技鏈中性，對 被動元件、封測、PCB 這組主軸仍要看台股自己量能。",
+          "signals": [
+            "Nasdaq -0.84%",
+            "費半 +0.18%",
+            "電子中性"
+          ]
+        },
+        "jp": {
+          "label": "日股分析",
+          "summary": "日經 225 -2.01%、東京威力科創 -3.69%、Advantest +0.36%。日股科技股轉弱，通常代表亞洲電子鏈對 被動元件、封測、PCB 的隔日情緒有沒有延續。",
+          "signals": [
+            "日經 -2.01%",
+            "TEL -3.69%",
+            "日股轉弱"
+          ]
+        },
+        "kr": {
+          "label": "韓股分析",
+          "summary": "KOSPI -6.10%、Samsung -1.36%、SK Hynix -3.09%。韓股電子權值轉弱，若韓股記憶體與權值一起強，台股電子主線通常比較容易延續。",
+          "signals": [
+            "KOSPI -6.10%",
+            "Samsung -1.36%",
+            "Hynix -3.09%"
+          ]
+        },
+        "hidden": {
+          "label": "蓋牌猜測",
+          "summary": "若今天大盤延續 被動元件、封測、PCB 輪動，蓋牌比較像 尼克森、奇鋐、金像電。這幾檔沒有在這支影片直接講出來，但不是同族群補漲，就是在前兩支影片曾被反覆點過。",
+          "signals": [
+            "尼克森：曾在 2026/05/15 列輪漲 / 同屬 被動元件",
+            "奇鋐：曾在 2026/05/19 列輪漲 / 曾在 2026/05/15 列輪漲",
+            "金像電：曾在 2026/05/19 列輪漲 / 同屬 PCB"
+          ]
+        }
+      }
     },
     {
       "tone": "neutral",
@@ -50,7 +126,45 @@ const appState = {
         "13 檔重複輪漲",
         "3 檔重複高出",
         "3 檔重複當沖"
-      ]
+      ],
+      "marketLinks": {
+        "us": {
+          "label": "美股分析",
+          "summary": "Nasdaq -0.84%、S&P 500 -0.67%、費半 +0.18%。美股科技鏈中性，對 被動元件、封測、光學權值 這組主軸仍要看台股自己量能。",
+          "signals": [
+            "Nasdaq -0.84%",
+            "費半 +0.18%",
+            "電子中性"
+          ]
+        },
+        "jp": {
+          "label": "日股分析",
+          "summary": "日經 225 -2.01%、東京威力科創 -3.69%、Advantest +0.36%。日股科技股轉弱，通常代表亞洲電子鏈對 被動元件、封測、光學權值 的隔日情緒有沒有延續。",
+          "signals": [
+            "日經 -2.01%",
+            "TEL -3.69%",
+            "日股轉弱"
+          ]
+        },
+        "kr": {
+          "label": "韓股分析",
+          "summary": "KOSPI -6.10%、Samsung -1.36%、SK Hynix -3.09%。韓股電子權值轉弱，若韓股記憶體與權值一起強，台股電子主線通常比較容易延續。",
+          "signals": [
+            "KOSPI -6.10%",
+            "Samsung -1.36%",
+            "Hynix -3.09%"
+          ]
+        },
+        "hidden": {
+          "label": "蓋牌猜測",
+          "summary": "若今天大盤延續 被動元件、封測、光學權值 輪動，蓋牌比較像 立隆、同欣電、啟碁。這幾檔沒有在這支影片直接講出來，但不是同族群補漲，就是在前兩支影片曾被反覆點過。",
+          "signals": [
+            "立隆：曾在 2026/05/19 列輪漲 / 曾在 2026/05/18 列輪漲",
+            "同欣電：曾在 2026/05/18 列輪漲 / 同屬 封測",
+            "啟碁：曾在 2026/05/19 列輪漲 / 曾在 2026/05/18 列輪漲"
+          ]
+        }
+      }
     }
   ],
   "stocks": [
@@ -91,7 +205,7 @@ const appState = {
       "gap": "2026/05/19、2026/05/18、2026/05/15",
       "foreign": "交叉輪漲",
       "volume": "AI 機殼",
-      "note": "勤誠 在 2026/05/19、2026/05/18、2026/05/15 都被列為輪漲股，TWSE 官方日資料重算後，20 日 %B 約 0.459、40 日 %B 約 0.415；這檔在目前交叉後的角色辨識度仍然夠高。",
+      "note": "勤誠 在 2026/05/19、2026/05/18、2026/05/15 都被列為輪漲股，TWSE 官方日資料重算後，20 日 %B 約 0.459、40 日 %B 約 0.403；這檔在目前交叉後的角色辨識度仍然夠高。",
       "signals": [
         {
           "text": "3日共通",
@@ -216,10 +330,14 @@ const appState = {
       "gap": "2026/05/19、2026/05/18",
       "foreign": "交叉輪漲",
       "volume": "被動元件",
-      "note": "立隆 在 2026/05/19、2026/05/18 都被列為輪漲股，TWSE 官方日資料重算後，20 日 %B 約 0.736、40 日 %B 約 0.523；這檔在目前交叉後的角色辨識度仍然夠高。",
+      "note": "立隆 在 2026/05/19、2026/05/18 都被列為輪漲股，TWSE 官方日資料重算後，20 日 %B 約 0.417、40 日 %B 約 0.297；這檔在目前交叉後的角色辨識度仍然夠高。",
       "signals": [
         {
           "text": "2日共通",
+          "type": "positive"
+        },
+        {
+          "text": "位階較乾淨",
           "type": "positive"
         }
       ]
@@ -354,7 +472,7 @@ const appState = {
       "name": "勤誠",
       "verdict": "交叉延續股",
       "asOf": "截至 2026/05/19 收盤",
-      "summary": "勤誠 用 TWSE 官方日資料重算後，20 日 %B 約 0.459、40 日 %B 約 0.415；又是最近三支影片交叉後的重複輪漲股。",
+      "summary": "勤誠 用 TWSE 官方日資料重算後，20 日 %B 約 0.459、40 日 %B 約 0.403；又是最近三支影片交叉後的重複輪漲股。",
       "signals": [
         "3日共通",
         "20日 %B 0.459",
@@ -403,10 +521,10 @@ const appState = {
       "code": "2301",
       "name": "光寶",
       "verdict": "模型最平衡",
-      "range": "20 日模擬區間 125 - 201",
-      "stopLoss": "3% 停損命中率 83%",
+      "range": "20 日模擬區間 129 - 210",
+      "stopLoss": "3% 停損命中率 84%",
       "takeProfit": "8% 停利命中率 58%",
-      "drawdown": "模擬最大回撤中位數 24.6%",
+      "drawdown": "模擬最大回撤中位數 24.0%",
       "note": "光寶 是這版布林與重複輪漲交集最漂亮的一檔。",
       "signals": [
         {
@@ -423,10 +541,10 @@ const appState = {
       "code": "3044",
       "name": "健鼎",
       "verdict": "延續機率高",
-      "range": "20 日模擬區間 305 - 457",
-      "stopLoss": "3% 停損命中率 85%",
-      "takeProfit": "8% 停利命中率 62%",
-      "drawdown": "模擬最大回撤中位數 21.7%",
+      "range": "20 日模擬區間 293 - 457",
+      "stopLoss": "3% 停損命中率 83%",
+      "takeProfit": "8% 停利命中率 58%",
+      "drawdown": "模擬最大回撤中位數 22.3%",
       "note": "健鼎 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
@@ -443,10 +561,10 @@ const appState = {
       "code": "8261",
       "name": "富鼎",
       "verdict": "第二梯隊觀察",
-      "range": "20 日模擬區間 72 - 112",
-      "stopLoss": "3% 停損命中率 88%",
-      "takeProfit": "8% 停利命中率 56%",
-      "drawdown": "模擬最大回撤中位數 24.0%",
+      "range": "20 日模擬區間 70 - 107",
+      "stopLoss": "3% 停損命中率 89%",
+      "takeProfit": "8% 停利命中率 53%",
+      "drawdown": "模擬最大回撤中位數 25.7%",
       "note": "富鼎 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
@@ -576,6 +694,7 @@ function renderHeadlineCollection(target, compact) {
     const summary = clone.querySelector("p");
     const meta = clone.querySelector(".headline__meta");
     const analysis = clone.querySelector(".headline__analysis");
+    const marketGrid = clone.querySelector(".headline__market-grid");
     const chips = clone.querySelector(".headline__chips");
 
     if (compact) {
@@ -603,6 +722,35 @@ function renderHeadlineCollection(target, compact) {
       analysis.textContent = item.analysis;
     } else {
       analysis.remove();
+    }
+
+    if (item.marketLinks && Object.keys(item.marketLinks).length) {
+      Object.values(item.marketLinks).forEach((block) => {
+        const card = document.createElement("div");
+        card.className = "headline-market";
+
+        const label = document.createElement("div");
+        label.className = "headline-market__label";
+        label.textContent = block.label;
+
+        const value = document.createElement("div");
+        value.className = "headline-market__value";
+        value.textContent = block.summary;
+
+        const signals = document.createElement("div");
+        signals.className = "headline-market__signals";
+        (block.signals || []).forEach((signalText) => {
+          const signal = document.createElement("div");
+          signal.className = "headline-market__signal";
+          signal.textContent = signalText;
+          signals.append(signal);
+        });
+
+        card.append(label, value, signals);
+        marketGrid.append(card);
+      });
+    } else {
+      marketGrid.remove();
     }
 
     if (Array.isArray(item.tags) && item.tags.length) {

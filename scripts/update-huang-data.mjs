@@ -84,6 +84,33 @@ const stockCatalog = {
   "緯創": { code: "3231", sector: "AI PC / 伺服器", market: "TWSE" },
 };
 
+const hiddenPeerCatalog = {
+  "PCB": ["台燿", "華通", "欣興", "南電", "金像電", "敬鵬", "健鼎"],
+  "被動元件": ["國巨", "華新科", "日電貿", "立隆", "尼克森", "信昌電"],
+  "封測": ["矽格", "超豐", "京元電", "力成", "頎邦", "同欣電"],
+  "AI": ["奇鋐", "勤誠", "技嘉", "緯創", "廣達", "鴻海"],
+  "網通": ["啟碁", "智邦", "神達", "中磊"],
+  "光學權值": ["大立光", "玉晶光", "亞光"],
+  "光通訊": ["聯亞", "聯鈞", "全新", "光聖", "波若威"],
+  "記憶體": ["南亞科", "華邦", "旺宏"],
+  "面板": ["友達", "群創"],
+  "MOSFET": ["富鼎", "尼克森"],
+  "ABF": ["景碩", "南電", "欣興"],
+  "電子權值": ["鴻海", "光寶", "廣達"],
+};
+
+const globalMarketSymbols = {
+  nasdaq: { symbol: "^IXIC", label: "Nasdaq" },
+  sp500: { symbol: "^GSPC", label: "S&P 500" },
+  soxx: { symbol: "SOXX", label: "費半 ETF" },
+  nikkei: { symbol: "^N225", label: "日經 225" },
+  tokyoElectron: { symbol: "8035.T", label: "東京威力科創" },
+  advantest: { symbol: "6857.T", label: "Advantest" },
+  kospi: { symbol: "^KS11", label: "KOSPI" },
+  samsung: { symbol: "005930.KS", label: "Samsung" },
+  hynix: { symbol: "000660.KS", label: "SK Hynix" },
+};
+
 function formatDate(date = new Date()) {
   const parts = new Intl.DateTimeFormat("en-CA", {
     timeZone: "Asia/Taipei",
@@ -125,6 +152,10 @@ function versionStamp(date = new Date()) {
 
 function unique(values) {
   return [...new Set(values)];
+}
+
+function normalizeTheme(sector) {
+  return String(sector || "其他").split(" / ")[0];
 }
 
 function normalizeDate(raw) {
@@ -398,7 +429,7 @@ function dominantThemes(names) {
   const counters = new Map();
   for (const name of names) {
     const sector = stockCatalog[name]?.sector || "其他";
-    const normalized = sector.split(" / ")[0];
+    const normalized = normalizeTheme(sector);
     counters.set(normalized, (counters.get(normalized) || 0) + 1);
   }
   return [...counters.entries()]
@@ -407,7 +438,179 @@ function dominantThemes(names) {
     .map(([sector]) => sector);
 }
 
-function describeVideo(video, index, videos) {
+function formatPctChange(value) {
+  if (!Number.isFinite(value)) {
+    return "資料待補";
+  }
+  const sign = value > 0 ? "+" : "";
+  return `${sign}${value.toFixed(2)}%`;
+}
+
+function marketBias(change, positiveText, negativeText, neutralText) {
+  if (!Number.isFinite(change)) {
+    return "資料待補";
+  }
+  if (change >= 0.6) {
+    return positiveText;
+  }
+  if (change <= -0.6) {
+    return negativeText;
+  }
+  return neutralText;
+}
+
+function themeGroupLabel(themes) {
+  return themes.length ? themes.join("、") : "電子";
+}
+
+function sectorMatchesTheme(name, theme) {
+  const sector = stockCatalog[name]?.sector || "";
+  return normalizeTheme(sector) === theme || sector.includes(theme);
+}
+
+async function fetchYahooSnapshot(symbol) {
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=5d&interval=1d`;
+  const response = await fetch(url, {
+    headers: {
+      "user-agent": "Mozilla/5.0 MorningRadar/1.0",
+      "cache-control": "no-cache",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Yahoo ${symbol} HTTP ${response.status}`);
+  }
+
+  const json = await response.json();
+  const result = json.chart?.result?.[0];
+  const closes = result?.indicators?.quote?.[0]?.close?.filter((value) => Number.isFinite(value)) || [];
+  if (closes.length < 2) {
+    throw new Error(`Yahoo ${symbol} insufficient closes`);
+  }
+
+  const close = closes.at(-1);
+  const prevClose = closes.at(-2);
+  return {
+    close,
+    prevClose,
+    changePct: ((close - prevClose) / prevClose) * 100,
+  };
+}
+
+async function fetchGlobalMarketContext() {
+  const entries = await Promise.all(Object.entries(globalMarketSymbols).map(async ([key, config]) => {
+    try {
+      const snapshot = await fetchYahooSnapshot(config.symbol);
+      return [key, { ...config, ...snapshot }];
+    } catch (_) {
+      return [key, { ...config, close: null, prevClose: null, changePct: NaN }];
+    }
+  }));
+  return Object.fromEntries(entries);
+}
+
+function buildHiddenCandidates(video, videos, themes) {
+  const explicit = new Set([
+    ...video.categories.wheel,
+    ...video.categories.high,
+    ...video.categories.dayTrade,
+  ]);
+  const candidates = new Map();
+
+  function addCandidate(name, score, reason) {
+    if (!name || explicit.has(name)) {
+      return;
+    }
+
+    if (!candidates.has(name)) {
+      candidates.set(name, { name, score: 0, reasons: [] });
+    }
+
+    const entry = candidates.get(name);
+    entry.score += score;
+    if (!entry.reasons.includes(reason)) {
+      entry.reasons.push(reason);
+    }
+  }
+
+  for (const other of videos) {
+    if (other.date === video.date) {
+      continue;
+    }
+    other.categories.wheel.forEach((name) => addCandidate(name, 4, `曾在 ${other.date} 列輪漲`));
+    other.categories.high.forEach((name) => addCandidate(name, 2, `曾在 ${other.date} 列高出`));
+    other.categories.dayTrade.forEach((name) => addCandidate(name, 1, `曾在 ${other.date} 列當沖`));
+  }
+
+  for (const theme of themes) {
+    for (const peer of hiddenPeerCatalog[theme] || []) {
+      addCandidate(peer, 3, `同屬 ${theme}`);
+    }
+
+    for (const name of Object.keys(stockCatalog)) {
+      if (sectorMatchesTheme(name, theme)) {
+        addCandidate(name, 1, `同族群 ${theme}`);
+      }
+    }
+  }
+
+  return [...candidates.values()]
+    .sort((left, right) => right.score - left.score || left.name.localeCompare(right.name, "zh-Hant"))
+    .slice(0, 3)
+    .map((item) => ({
+      name: item.name,
+      reasons: item.reasons.slice(0, 2),
+    }));
+}
+
+function buildMarketLinks(video, videos, themes, globalContext) {
+  const themeLabel = themeGroupLabel(themes);
+  const usLead = ((globalContext.nasdaq?.changePct || 0) + (globalContext.soxx?.changePct || 0)) / 2;
+  const jpLead = ((globalContext.nikkei?.changePct || 0) + (globalContext.tokyoElectron?.changePct || 0) + (globalContext.advantest?.changePct || 0)) / 3;
+  const krLead = ((globalContext.kospi?.changePct || 0) + (globalContext.samsung?.changePct || 0) + (globalContext.hynix?.changePct || 0)) / 3;
+  const hiddenCandidates = buildHiddenCandidates(video, videos, themes);
+
+  return {
+    us: {
+      label: "美股分析",
+      summary: `Nasdaq ${formatPctChange(globalContext.nasdaq?.changePct)}、S&P 500 ${formatPctChange(globalContext.sp500?.changePct)}、費半 ${formatPctChange(globalContext.soxx?.changePct)}。${marketBias(usLead, "美股科技鏈偏多", "美股科技鏈轉保守", "美股科技鏈中性")}，對 ${themeLabel} 這組主軸${usLead >= 0.6 ? "有順風" : usLead <= -0.6 ? "會增加開高走低風險" : "仍要看台股自己量能"}。`,
+      signals: [
+        `Nasdaq ${formatPctChange(globalContext.nasdaq?.changePct)}`,
+        `費半 ${formatPctChange(globalContext.soxx?.changePct)}`,
+        marketBias(usLead, "電子偏多", "電子偏保守", "電子中性"),
+      ],
+    },
+    jp: {
+      label: "日股分析",
+      summary: `日經 225 ${formatPctChange(globalContext.nikkei?.changePct)}、東京威力科創 ${formatPctChange(globalContext.tokyoElectron?.changePct)}、Advantest ${formatPctChange(globalContext.advantest?.changePct)}。${marketBias(jpLead, "日股科技股續強", "日股科技股轉弱", "日股科技股震盪")}，通常代表亞洲電子鏈對 ${themeLabel} 的隔日情緒有沒有延續。`,
+      signals: [
+        `日經 ${formatPctChange(globalContext.nikkei?.changePct)}`,
+        `TEL ${formatPctChange(globalContext.tokyoElectron?.changePct)}`,
+        marketBias(jpLead, "日股偏多", "日股轉弱", "日股中性"),
+      ],
+    },
+    kr: {
+      label: "韓股分析",
+      summary: `KOSPI ${formatPctChange(globalContext.kospi?.changePct)}、Samsung ${formatPctChange(globalContext.samsung?.changePct)}、SK Hynix ${formatPctChange(globalContext.hynix?.changePct)}。${marketBias(krLead, "韓股電子權值偏多", "韓股電子權值轉弱", "韓股電子權值中性")}，若韓股記憶體與權值一起強，台股電子主線通常比較容易延續。`,
+      signals: [
+        `KOSPI ${formatPctChange(globalContext.kospi?.changePct)}`,
+        `Samsung ${formatPctChange(globalContext.samsung?.changePct)}`,
+        `Hynix ${formatPctChange(globalContext.hynix?.changePct)}`,
+      ],
+    },
+    hidden: {
+      label: "蓋牌猜測",
+      summary: hiddenCandidates.length
+        ? `若今天大盤延續 ${themeLabel} 輪動，蓋牌比較像 ${hiddenCandidates.map((item) => item.name).join("、")}。這幾檔沒有在這支影片直接講出來，但不是同族群補漲，就是在前兩支影片曾被反覆點過。`
+        : `這支影片沒有明顯的蓋牌輪廓，先以原本點名股為主。`,
+      signals: hiddenCandidates.length
+        ? hiddenCandidates.map((item) => `${item.name}：${item.reasons.join(" / ")}`)
+        : ["暫無明顯蓋牌猜測"],
+    },
+  };
+}
+
+function describeVideo(video, index, videos, globalContext) {
   const wheelText = video.categories.wheel.length ? `${video.categories.wheel.join("、")}列輪漲` : "";
   const highText = video.categories.high.length ? `${video.categories.high.join("、")}列高出` : "";
   const dayText = video.categories.dayTrade.length ? `${video.categories.dayTrade.join("、")}列當沖` : "";
@@ -418,6 +621,7 @@ function describeVideo(video, index, videos) {
   const repeatedHigh = video.categories.high.filter((name) => otherVideos.some((other) => other.categories.high.includes(name)));
   const repeatedDay = video.categories.dayTrade.filter((name) => otherVideos.some((other) => other.categories.dayTrade.includes(name)));
   const themes = dominantThemes(video.categories.wheel);
+  const marketLinks = buildMarketLinks(video, videos, themes, globalContext);
   const structureMeta = [
     `${video.categories.wheel.length} 檔輪漲`,
     `${video.categories.high.length} 檔高出`,
@@ -454,6 +658,7 @@ function describeVideo(video, index, videos) {
     meta: structureMeta,
     analysis: analysisParts.join(" "),
     tags,
+    marketLinks,
   };
 }
 
@@ -507,7 +712,7 @@ function buildStockNote(name, entry, metrics, latestDate) {
   return `${name} 在 ${datesText} 這組影片裡被列為${role}，目前先依 ${meta.market === "TPEx" ? "TPEx" : "官方"} 整理資料列入觀察，等後續影片是否續點再決定排序。`;
 }
 
-function buildState(videos, quoteMetrics, syncTime) {
+function buildState(videos, quoteMetrics, globalContext, syncTime) {
   const latest = videos[0];
   const previous = videos[1];
   const third = videos[2];
@@ -680,7 +885,7 @@ function buildState(videos, quoteMetrics, syncTime) {
       videoBasis,
     },
     marketMood,
-    headlines: videos.map((video, index) => describeVideo(video, index, videos)),
+    headlines: videos.map((video, index) => describeVideo(video, index, videos, globalContext)),
     stocks,
     checklist,
     risks,
@@ -741,8 +946,11 @@ async function main() {
   }
 
   const syncTime = formatDateTime();
-  const quoteMetrics = await buildQuoteMetrics(videos);
-  const state = buildState(videos, quoteMetrics, syncTime);
+  const [quoteMetrics, globalContext] = await Promise.all([
+    buildQuoteMetrics(videos),
+    fetchGlobalMarketContext(),
+  ]);
+  const state = buildState(videos, quoteMetrics, globalContext, syncTime);
   await updateAppFile(state);
 
   process.stdout.write(`Updated app.js with basis ${state.updateMeta.videoBasis}\n`);

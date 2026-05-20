@@ -258,7 +258,8 @@ body {
 
 .headline--compact .headline__analysis,
 .headline--compact .headline__meta,
-.headline--compact .headline__chips {
+.headline--compact .headline__chips,
+.headline--compact .headline__market-grid {
   display: none;
 }
 
@@ -278,6 +279,51 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.headline__market-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.headline-market {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid var(--line);
+}
+
+.headline-market__label {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.headline-market__value {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.headline-market__signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.headline-market__signal {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(27, 28, 30, 0.06);
+  color: var(--muted);
 }
 
 .headline-chip {
@@ -523,7 +569,7 @@ body {
   bottom: 18px;
   width: min(92vw, 480px);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   padding: 10px;
   border-radius: 22px;
@@ -566,7 +612,8 @@ body {
   .hero__meta-grid,
   .scoreboard,
   .metric-grid,
-  .stock-card__signals {
+  .stock-card__signals,
+  .headline__market-grid {
     grid-template-columns: 1fr;
   }
 
