@@ -52,11 +52,21 @@
         <div class="panel__header">
           <div>
             <div class="panel__eyebrow">影片整理</div>
-            <h2>黃清照近期重點</h2>
+            <h2>黃清照最新摘要</h2>
           </div>
           <div id="todayLabel" class="panel__date"></div>
         </div>
         <div id="headlineList" class="headline-list"></div>
+      </section>
+
+      <section class="panel view-panel" data-view="videos">
+        <div class="panel__header">
+          <div>
+            <div class="panel__eyebrow">Video Analysis</div>
+            <h2>黃清照影片分析</h2>
+          </div>
+        </div>
+        <div id="videoAnalysisList" class="headline-list"></div>
       </section>
 
       <section class="panel view-panel" data-view="overview">
@@ -138,6 +148,7 @@
 
     <nav class="bottom-nav" aria-label="主要功能">
       <button class="bottom-nav__item bottom-nav__item--active" type="button" data-tab="overview" onclick="switchTab('overview')">總覽</button>
+      <button class="bottom-nav__item" type="button" data-tab="videos" onclick="switchTab('videos')">影片</button>
       <button class="bottom-nav__item" type="button" data-tab="list" onclick="switchTab('list')">清單</button>
       <button class="bottom-nav__item" type="button" data-tab="alerts" onclick="switchTab('alerts')">提醒</button>
     </nav>

@@ -256,6 +256,12 @@ body {
   gap: 8px;
 }
 
+.headline--compact .headline__analysis,
+.headline--compact .headline__meta,
+.headline--compact .headline__chips {
+  display: none;
+}
+
 .headline__meta {
   color: var(--muted);
   font-size: 0.86rem;

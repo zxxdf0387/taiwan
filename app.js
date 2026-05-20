@@ -472,6 +472,7 @@ const elements = {
   syncStatus: document.querySelector("#syncStatus"),
   updateMeta: document.querySelector("#updateMeta"),
   headlineList: document.querySelector("#headlineList"),
+  videoAnalysisList: document.querySelector("#videoAnalysisList"),
   stockList: document.querySelector("#stockList"),
   checklist: document.querySelector("#checklist"),
   riskList: document.querySelector("#riskList"),
@@ -556,17 +557,30 @@ function renderHeader() {
 }
 
 function renderHeadlines() {
+  renderHeadlineCollection(elements.headlineList, true);
+}
+
+function renderVideoAnalysis() {
+  renderHeadlineCollection(elements.videoAnalysisList, false);
+}
+
+function renderHeadlineCollection(target, compact) {
   const template = document.querySelector("#headlineTemplate");
-  elements.headlineList.replaceChildren();
+  target.replaceChildren();
 
   appState.headlines.forEach((item) => {
     const clone = template.content.cloneNode(true);
+    const article = clone.querySelector(".headline");
     const badge = clone.querySelector(".headline__badge");
     const title = clone.querySelector("h3");
     const summary = clone.querySelector("p");
     const meta = clone.querySelector(".headline__meta");
     const analysis = clone.querySelector(".headline__analysis");
     const chips = clone.querySelector(".headline__chips");
+
+    if (compact) {
+      article.classList.add("headline--compact");
+    }
 
     if (item.tone === "warning") {
       badge.style.background = "#b53d29";
@@ -602,7 +616,7 @@ function renderHeadlines() {
       chips.remove();
     }
 
-    elements.headlineList.append(clone);
+    target.append(clone);
   });
 }
 
@@ -814,6 +828,7 @@ function renderMonteCarlo() {
 function switchTab(tab) {
   const tabNames = {
     overview: "總覽",
+    videos: "影片",
     list: "清單",
     alerts: "提醒",
   };
@@ -937,6 +952,7 @@ function registerServiceWorker() {
 function init() {
   renderHeader();
   renderHeadlines();
+  renderVideoAnalysis();
   renderStocks();
   renderChecklist();
   renderRisks();
