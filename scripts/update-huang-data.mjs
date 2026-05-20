@@ -394,16 +394,66 @@ function sentimentTone(video, index) {
   return video.categories.wheel.length >= video.categories.dayTrade.length ? "neutral" : "warning";
 }
 
-function describeVideo(video, index) {
+function dominantThemes(names) {
+  const counters = new Map();
+  for (const name of names) {
+    const sector = stockCatalog[name]?.sector || "其他";
+    const normalized = sector.split(" / ")[0];
+    counters.set(normalized, (counters.get(normalized) || 0) + 1);
+  }
+  return [...counters.entries()]
+    .sort((left, right) => right[1] - left[1])
+    .slice(0, 3)
+    .map(([sector]) => sector);
+}
+
+function describeVideo(video, index, videos) {
   const wheelText = video.categories.wheel.length ? `${video.categories.wheel.join("、")}列輪漲` : "";
   const highText = video.categories.high.length ? `${video.categories.high.join("、")}列高出` : "";
   const dayText = video.categories.dayTrade.length ? `${video.categories.dayTrade.join("、")}列當沖` : "";
   const pieces = [wheelText, highText, dayText].filter(Boolean).join("，");
   const prefix = index === 0 ? "最新影片" : index === 1 ? "前一支影片" : "再前一支影片";
+  const otherVideos = videos.filter((_, otherIndex) => otherIndex !== index);
+  const repeatedWheel = video.categories.wheel.filter((name) => otherVideos.some((other) => other.categories.wheel.includes(name)));
+  const repeatedHigh = video.categories.high.filter((name) => otherVideos.some((other) => other.categories.high.includes(name)));
+  const repeatedDay = video.categories.dayTrade.filter((name) => otherVideos.some((other) => other.categories.dayTrade.includes(name)));
+  const themes = dominantThemes(video.categories.wheel);
+  const structureMeta = [
+    `${video.categories.wheel.length} 檔輪漲`,
+    `${video.categories.high.length} 檔高出`,
+    `${video.categories.dayTrade.length} 檔當沖`,
+  ].join(" ｜ ");
+
+  const analysisParts = [];
+  if (themes.length) {
+    analysisParts.push(`主軸偏向 ${themes.join("、")}。`);
+  }
+  if (repeatedWheel.length) {
+    analysisParts.push(`和其他影片重複輪漲最多的是 ${topNames(repeatedWheel.slice(0, 5), "暫無")}。`);
+  } else {
+    analysisParts.push("這支影片的輪漲股比較偏單日切換。");
+  }
+  if (repeatedHigh.length) {
+    analysisParts.push(`高出辨識股集中在 ${topNames(repeatedHigh.slice(0, 4), "暫無")}。`);
+  }
+  if (repeatedDay.length) {
+    analysisParts.push(`當沖股則是 ${topNames(repeatedDay.slice(0, 4), "暫無")}，節奏偏快。`);
+  }
+
+  const tags = [
+    themes[0] ? `主軸 ${themes[0]}` : null,
+    repeatedWheel.length ? `${repeatedWheel.length} 檔重複輪漲` : "單日輪動",
+    repeatedHigh.length ? `${repeatedHigh.length} 檔重複高出` : null,
+    repeatedDay.length ? `${repeatedDay.length} 檔重複當沖` : null,
+  ].filter(Boolean);
+
   return {
     tone: sentimentTone(video, index),
     title: `${prefix}：${video.date}`,
     summary: `${video.date} 這支影片把 ${pieces || video.raw}。`,
+    meta: structureMeta,
+    analysis: analysisParts.join(" "),
+    tags,
   };
 }
 
@@ -630,7 +680,7 @@ function buildState(videos, quoteMetrics, syncTime) {
       videoBasis,
     },
     marketMood,
-    headlines: videos.map(describeVideo),
+    headlines: videos.map((video, index) => describeVideo(video, index, videos)),
     stocks,
     checklist,
     risks,

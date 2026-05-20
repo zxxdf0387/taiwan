@@ -1,9 +1,9 @@
 const appState = {
   "liveQuotes": {},
   "updateMeta": {
-    "version": "2026.05.20.0154",
-    "lastUpdated": "2026/05/20 01:54",
-    "lastAutomationSync": "2026/05/20 01:54",
+    "version": "2026.05.20.0825",
+    "lastUpdated": "2026/05/20 08:24",
+    "lastAutomationSync": "2026/05/20 08:24",
     "videoBasis": "2026/05/19、2026/05/18、2026/05/15"
   },
   "marketMood": {
@@ -16,17 +16,41 @@ const appState = {
     {
       "tone": "positive",
       "title": "最新影片：2026/05/19",
-      "summary": "2026/05/19 這支影片把 啟碁、國巨、金像電、勤誠、奇鋐、健鼎、貿聯、光寶、敬鵬、日電貿、立隆、超豐、富鼎、矽格、良維、萬泰科列輪漲，尖點、聯亞、穩懋、盟立、所羅門列高出，聯電、群創、頎邦列當沖。"
+      "summary": "2026/05/19 這支影片把 啟碁、國巨、金像電、勤誠、奇鋐、健鼎、貿聯、光寶、敬鵬、日電貿、立隆、超豐、富鼎、矽格、良維、萬泰科列輪漲，尖點、聯亞、穩懋、盟立、所羅門列高出，聯電、群創、頎邦列當沖。",
+      "meta": "16 檔輪漲 ｜ 5 檔高出 ｜ 3 檔當沖",
+      "analysis": "主軸偏向 PCB、被動元件、封測。 和其他影片重複輪漲最多的是 啟碁、國巨、勤誠、奇鋐、健鼎。 高出辨識股集中在 尖點、聯亞、穩懋、盟立。 當沖股則是 聯電、群創，節奏偏快。",
+      "tags": [
+        "主軸 PCB",
+        "14 檔重複輪漲",
+        "4 檔重複高出",
+        "2 檔重複當沖"
+      ]
     },
     {
       "tone": "neutral",
       "title": "前一支影片：2026/05/18",
-      "summary": "2026/05/18 這支影片把 日電貿、立隆、矽格、超豐、富鼎、光寶、良維、敬鵬、同欣電、啟碁、國巨、智邦、勤誠、健鼎、技嘉、貿聯列輪漲，盟立、上銀、景碩、尖點、聯亞、穩懋列高出，聯電、群創、華邦列當沖。"
+      "summary": "2026/05/18 這支影片把 日電貿、立隆、矽格、超豐、富鼎、光寶、良維、敬鵬、同欣電、啟碁、國巨、智邦、勤誠、健鼎、技嘉、貿聯列輪漲，盟立、上銀、景碩、尖點、聯亞、穩懋列高出，聯電、群創、華邦列當沖。",
+      "meta": "16 檔輪漲 ｜ 6 檔高出 ｜ 3 檔當沖",
+      "analysis": "主軸偏向 被動元件、封測、PCB。 和其他影片重複輪漲最多的是 日電貿、立隆、矽格、超豐、富鼎。 高出辨識股集中在 盟立、尖點、聯亞、穩懋。 當沖股則是 聯電、群創、華邦，節奏偏快。",
+      "tags": [
+        "主軸 被動元件",
+        "15 檔重複輪漲",
+        "4 檔重複高出",
+        "3 檔重複當沖"
+      ]
     },
     {
       "tone": "neutral",
       "title": "再前一支影片：2026/05/15",
-      "summary": "2026/05/15 這支影片把 大立光、智邦、國巨、勤誠、健鼎、奇鋐、技嘉、鴻海、貿聯、日電貿、尼克森、良維、矽格、超豐、富鼎、光寶列輪漲，尖點、聯亞、穩懋、華通列高出，聯電、群創、華邦、南亞科列當沖。"
+      "summary": "2026/05/15 這支影片把 大立光、智邦、國巨、勤誠、健鼎、奇鋐、技嘉、鴻海、貿聯、日電貿、尼克森、良維、矽格、超豐、富鼎、光寶列輪漲，尖點、聯亞、穩懋、華通列高出，聯電、群創、華邦、南亞科列當沖。",
+      "meta": "16 檔輪漲 ｜ 4 檔高出 ｜ 4 檔當沖",
+      "analysis": "主軸偏向 被動元件、封測、光學權值。 和其他影片重複輪漲最多的是 智邦、國巨、勤誠、健鼎、奇鋐。 高出辨識股集中在 尖點、聯亞、穩懋。 當沖股則是 聯電、群創、華邦，節奏偏快。",
+      "tags": [
+        "主軸 被動元件",
+        "13 檔重複輪漲",
+        "3 檔重複高出",
+        "3 檔重複當沖"
+      ]
     }
   ],
   "stocks": [
@@ -379,10 +403,10 @@ const appState = {
       "code": "2301",
       "name": "光寶",
       "verdict": "模型最平衡",
-      "range": "20 日模擬區間 125 - 197",
+      "range": "20 日模擬區間 127 - 198",
       "stopLoss": "3% 停損命中率 86%",
-      "takeProfit": "8% 停利命中率 58%",
-      "drawdown": "模擬最大回撤中位數 24.7%",
+      "takeProfit": "8% 停利命中率 60%",
+      "drawdown": "模擬最大回撤中位數 24.9%",
       "note": "光寶 是這版布林與重複輪漲交集最漂亮的一檔。",
       "signals": [
         {
@@ -399,10 +423,10 @@ const appState = {
       "code": "3044",
       "name": "健鼎",
       "verdict": "延續機率高",
-      "range": "20 日模擬區間 301 - 453",
-      "stopLoss": "3% 停損命中率 82%",
-      "takeProfit": "8% 停利命中率 65%",
-      "drawdown": "模擬最大回撤中位數 21.2%",
+      "range": "20 日模擬區間 286 - 439",
+      "stopLoss": "3% 停損命中率 86%",
+      "takeProfit": "8% 停利命中率 53%",
+      "drawdown": "模擬最大回撤中位數 23.9%",
       "note": "健鼎 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
@@ -419,10 +443,10 @@ const appState = {
       "code": "8261",
       "name": "富鼎",
       "verdict": "第二梯隊觀察",
-      "range": "20 日模擬區間 71 - 111",
-      "stopLoss": "3% 停損命中率 84%",
-      "takeProfit": "8% 停利命中率 58%",
-      "drawdown": "模擬最大回撤中位數 23.9%",
+      "range": "20 日模擬區間 71 - 110",
+      "stopLoss": "3% 停損命中率 88%",
+      "takeProfit": "8% 停利命中率 54%",
+      "drawdown": "模擬最大回撤中位數 25.6%",
       "note": "富鼎 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
@@ -540,6 +564,9 @@ function renderHeadlines() {
     const badge = clone.querySelector(".headline__badge");
     const title = clone.querySelector("h3");
     const summary = clone.querySelector("p");
+    const meta = clone.querySelector(".headline__meta");
+    const analysis = clone.querySelector(".headline__analysis");
+    const chips = clone.querySelector(".headline__chips");
 
     if (item.tone === "warning") {
       badge.style.background = "#b53d29";
@@ -551,6 +578,30 @@ function renderHeadlines() {
 
     title.textContent = item.title;
     summary.textContent = item.summary;
+
+    if (item.meta) {
+      meta.textContent = item.meta;
+    } else {
+      meta.remove();
+    }
+
+    if (item.analysis) {
+      analysis.textContent = item.analysis;
+    } else {
+      analysis.remove();
+    }
+
+    if (Array.isArray(item.tags) && item.tags.length) {
+      item.tags.forEach((tag) => {
+        const chip = document.createElement("div");
+        chip.className = "headline-chip";
+        chip.textContent = tag;
+        chips.append(chip);
+      });
+    } else {
+      chips.remove();
+    }
+
     elements.headlineList.append(clone);
   });
 }

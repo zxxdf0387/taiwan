@@ -251,6 +251,40 @@ body {
   border-bottom: none;
 }
 
+.headline__body {
+  display: grid;
+  gap: 8px;
+}
+
+.headline__meta {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.headline__analysis {
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.headline__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.headline-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgba(11, 122, 117, 0.1);
+  color: var(--accent);
+}
+
 .headline__badge,
 .risk-item__level {
   width: 12px;
