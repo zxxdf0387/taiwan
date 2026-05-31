@@ -1,9 +1,9 @@
 const appState = {
   "liveQuotes": {},
   "updateMeta": {
-    "version": "2026.05.30.2200",
-    "lastUpdated": "2026/05/30 22:00",
-    "lastAutomationSync": "2026/05/30 22:00",
+    "version": "2026.05.31.0900",
+    "lastUpdated": "2026/05/31 09:00",
+    "lastAutomationSync": "2026/05/31 09:00",
     "videoBasis": "2026/05/29、2026/05/28、2026/05/27"
   },
   "marketMood": {
@@ -509,10 +509,10 @@ const appState = {
       "code": "3044",
       "name": "健鼎",
       "verdict": "模型最平衡",
-      "range": "20 日模擬區間 304 - 466",
-      "stopLoss": "3% 停損命中率 85%",
-      "takeProfit": "8% 停利命中率 67%",
-      "drawdown": "模擬最大回撤中位數 24.2%",
+      "range": "20 日模擬區間 281 - 472",
+      "stopLoss": "3% 停損命中率 86%",
+      "takeProfit": "8% 停利命中率 58%",
+      "drawdown": "模擬最大回撤中位數 25.3%",
       "note": "健鼎 是這版布林與重複輪漲交集最漂亮的一檔。",
       "signals": [
         {
@@ -529,10 +529,10 @@ const appState = {
       "code": "8210",
       "name": "勤誠",
       "verdict": "延續機率高",
-      "range": "20 日模擬區間 642 - 1088",
-      "stopLoss": "3% 停損命中率 88%",
+      "range": "20 日模擬區間 627 - 1060",
+      "stopLoss": "3% 停損命中率 87%",
       "takeProfit": "8% 停利命中率 62%",
-      "drawdown": "模擬最大回撤中位數 29.7%",
+      "drawdown": "模擬最大回撤中位數 30.2%",
       "note": "勤誠 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
@@ -549,10 +549,10 @@ const appState = {
       "code": "3017",
       "name": "奇鋐",
       "verdict": "第二梯隊觀察",
-      "range": "20 日模擬區間 1145 - 2195",
-      "stopLoss": "3% 停損命中率 88%",
-      "takeProfit": "8% 停利命中率 68%",
-      "drawdown": "模擬最大回撤中位數 32.9%",
+      "range": "20 日模擬區間 1142 - 2160",
+      "stopLoss": "3% 停損命中率 89%",
+      "takeProfit": "8% 停利命中率 64%",
+      "drawdown": "模擬最大回撤中位數 33.6%",
       "note": "奇鋐 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
