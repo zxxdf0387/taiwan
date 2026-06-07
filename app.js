@@ -1,9 +1,9 @@
 const appState = {
   "liveQuotes": {},
   "updateMeta": {
-    "version": "2026.06.06.2200",
-    "lastUpdated": "2026/06/06 22:00",
-    "lastAutomationSync": "2026/06/06 22:00",
+    "version": "2026.06.07.0900",
+    "lastUpdated": "2026/06/07 09:00",
+    "lastAutomationSync": "2026/06/07 09:00",
     "videoBasis": "2026/06/05、2026/06/04、2026/06/03"
   },
   "marketMood": {
@@ -517,10 +517,10 @@ const appState = {
       "code": "3665",
       "name": "貿聯",
       "verdict": "模型最平衡",
-      "range": "20 日模擬區間 1091 - 2163",
-      "stopLoss": "3% 停損命中率 88%",
-      "takeProfit": "8% 停利命中率 63%",
-      "drawdown": "模擬最大回撤中位數 34.6%",
+      "range": "20 日模擬區間 1033 - 2060",
+      "stopLoss": "3% 停損命中率 89%",
+      "takeProfit": "8% 停利命中率 64%",
+      "drawdown": "模擬最大回撤中位數 36.7%",
       "note": "貿聯 是這版布林與重複輪漲交集最漂亮的一檔。",
       "signals": [
         {
@@ -537,10 +537,10 @@ const appState = {
       "code": "2345",
       "name": "智邦",
       "verdict": "延續機率高",
-      "range": "20 日模擬區間 863 - 1666",
+      "range": "20 日模擬區間 874 - 1780",
       "stopLoss": "3% 停損命中率 90%",
-      "takeProfit": "8% 停利命中率 62%",
-      "drawdown": "模擬最大回撤中位數 38.0%",
+      "takeProfit": "8% 停利命中率 63%",
+      "drawdown": "模擬最大回撤中位數 36.4%",
       "note": "智邦 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
@@ -557,10 +557,10 @@ const appState = {
       "code": "6257",
       "name": "矽格",
       "verdict": "第二梯隊觀察",
-      "range": "20 日模擬區間 105 - 176",
-      "stopLoss": "3% 停損命中率 87%",
-      "takeProfit": "8% 停利命中率 63%",
-      "drawdown": "模擬最大回撤中位數 27.3%",
+      "range": "20 日模擬區間 108 - 176",
+      "stopLoss": "3% 停損命中率 88%",
+      "takeProfit": "8% 停利命中率 62%",
+      "drawdown": "模擬最大回撤中位數 27.4%",
       "note": "矽格 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
