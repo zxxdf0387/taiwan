@@ -1,9 +1,9 @@
 const appState = {
   "liveQuotes": {},
   "updateMeta": {
-    "version": "2026.06.13.0900",
-    "lastUpdated": "2026/06/13 09:00",
-    "lastAutomationSync": "2026/06/13 09:00",
+    "version": "2026.06.13.2200",
+    "lastUpdated": "2026/06/13 22:00",
+    "lastAutomationSync": "2026/06/13 22:00",
     "videoBasis": "2026/06/12、2026/06/11、2026/06/10"
   },
   "marketMood": {
@@ -436,7 +436,7 @@ const appState = {
       "name": "奇鋐",
       "verdict": "最新補強股",
       "asOf": "截至 2026/06/12 收盤",
-      "summary": "奇鋐 用 TWSE 官方日資料重算後，20 日 %B 約 0.590、40 日 %B 約 0.348；雖然只出現在最新影片，但位階仍算乾淨。",
+      "summary": "奇鋐 用 TWSE 官方日資料重算後，20 日 %B 約 0.590、40 日 %B 約 0.366；雖然只出現在最新影片，但位階仍算乾淨。",
       "signals": [
         "最新主線",
         "20日 %B 0.590",
@@ -509,10 +509,10 @@ const appState = {
       "code": "6257",
       "name": "矽格",
       "verdict": "模型最平衡",
-      "range": "20 日模擬區間 104 - 179",
+      "range": "20 日模擬區間 103 - 176",
       "stopLoss": "3% 停損命中率 87%",
-      "takeProfit": "8% 停利命中率 60%",
-      "drawdown": "模擬最大回撤中位數 27.2%",
+      "takeProfit": "8% 停利命中率 63%",
+      "drawdown": "模擬最大回撤中位數 27.8%",
       "note": "矽格 是這版布林與重複輪漲交集最漂亮的一檔。",
       "signals": [
         {
@@ -529,10 +529,10 @@ const appState = {
       "code": "3017",
       "name": "奇鋐",
       "verdict": "延續機率高",
-      "range": "20 日模擬區間 1298 - 2234",
+      "range": "20 日模擬區間 1269 - 2473",
       "stopLoss": "3% 停損命中率 91%",
-      "takeProfit": "8% 停利命中率 60%",
-      "drawdown": "模擬最大回撤中位數 32.2%",
+      "takeProfit": "8% 停利命中率 64%",
+      "drawdown": "模擬最大回撤中位數 31.8%",
       "note": "奇鋐 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
@@ -549,10 +549,10 @@ const appState = {
       "code": "2345",
       "name": "智邦",
       "verdict": "第二梯隊觀察",
-      "range": "20 日模擬區間 919 - 1830",
-      "stopLoss": "3% 停損命中率 87%",
-      "takeProfit": "8% 停利命中率 68%",
-      "drawdown": "模擬最大回撤中位數 35.1%",
+      "range": "20 日模擬區間 912 - 1812",
+      "stopLoss": "3% 停損命中率 90%",
+      "takeProfit": "8% 停利命中率 63%",
+      "drawdown": "模擬最大回撤中位數 35.2%",
       "note": "智邦 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
