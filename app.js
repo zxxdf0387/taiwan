@@ -1,9 +1,9 @@
 const appState = {
   "liveQuotes": {},
   "updateMeta": {
-    "version": "2026.06.13.2200",
-    "lastUpdated": "2026/06/13 22:00",
-    "lastAutomationSync": "2026/06/13 22:00",
+    "version": "2026.06.14.0900",
+    "lastUpdated": "2026/06/14 09:00",
+    "lastAutomationSync": "2026/06/14 09:00",
     "videoBasis": "2026/06/12、2026/06/11、2026/06/10"
   },
   "marketMood": {
@@ -509,10 +509,10 @@ const appState = {
       "code": "6257",
       "name": "矽格",
       "verdict": "模型最平衡",
-      "range": "20 日模擬區間 103 - 176",
-      "stopLoss": "3% 停損命中率 87%",
-      "takeProfit": "8% 停利命中率 63%",
-      "drawdown": "模擬最大回撤中位數 27.8%",
+      "range": "20 日模擬區間 109 - 173",
+      "stopLoss": "3% 停損命中率 84%",
+      "takeProfit": "8% 停利命中率 65%",
+      "drawdown": "模擬最大回撤中位數 26.9%",
       "note": "矽格 是這版布林與重複輪漲交集最漂亮的一檔。",
       "signals": [
         {
@@ -529,10 +529,10 @@ const appState = {
       "code": "3017",
       "name": "奇鋐",
       "verdict": "延續機率高",
-      "range": "20 日模擬區間 1269 - 2473",
-      "stopLoss": "3% 停損命中率 91%",
-      "takeProfit": "8% 停利命中率 64%",
-      "drawdown": "模擬最大回撤中位數 31.8%",
+      "range": "20 日模擬區間 1358 - 2523",
+      "stopLoss": "3% 停損命中率 86%",
+      "takeProfit": "8% 停利命中率 67%",
+      "drawdown": "模擬最大回撤中位數 30.5%",
       "note": "奇鋐 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
@@ -549,10 +549,10 @@ const appState = {
       "code": "2345",
       "name": "智邦",
       "verdict": "第二梯隊觀察",
-      "range": "20 日模擬區間 912 - 1812",
-      "stopLoss": "3% 停損命中率 90%",
+      "range": "20 日模擬區間 954 - 1772",
+      "stopLoss": "3% 停損命中率 91%",
       "takeProfit": "8% 停利命中率 63%",
-      "drawdown": "模擬最大回撤中位數 35.2%",
+      "drawdown": "模擬最大回撤中位數 35.7%",
       "note": "智邦 屬於可以當第二層風險觀察的延續股。",
       "signals": [
         {
